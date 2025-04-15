@@ -1,0 +1,269 @@
+﻿body {
+    background-color: black;
+    color: lime;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.intro {
+    max-width: 900px;
+    margin: 40px auto;
+    font-family: monospace;
+    color: lime;
+    background-color: black;
+    padding: 1rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.matrix-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 16px;
+    background-color: black;
+    border: 2px solid lime;
+    color: lime;
+    font-family: monospace;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.matrix-button:hover {
+    background-color: lime;
+    color: black;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: lime;
+}
+
+.form-container {
+    max-width: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.form-input {
+    background-color: black;
+    border: 1px solid lime;
+    color: lime;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.form-button {
+    background-color: black;
+    border: 2px solid lime;
+    color: lime;
+    padding: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: lime;
+    color: black;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.score-line {
+    color: lime;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.score-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.score-row {
+    display: flex;
+    justify-content: space-between;
+    color: lime;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 6px;
+    font-family: monospace;
+}
+
+.score-name {
+    text-align: right;
+    flex: 1;
+}
+
+.score-value {
+    text-align: left;
+    flex: 1;
+}
+.form-container {
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-label {
+    color: lime;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.form-input {
+    padding: 5px 10px;
+    background-color: black;
+    border: 1px solid lime;
+    color: lime;
+    font-family: monospace;
+}
+
+.form-button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: black;
+    border: 2px solid lime;
+    color: lime;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-button:hover {
+    background-color: lime;
+    color: black;
+}
+
+.title {
+    color: lime;
+    text-align: center;
+    font-family: monospace;
+    font-size: 24px;
+    margin-top: 30px;
+}
+
+.message {
+    text-align: center;
+    font-family: monospace;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.success {
+    color: lime;
+}
+
+.error {
+    color: red;
+}
+
+.validation {
+    color: orange;
+    font-size: 14px;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-label {
+    color: lime;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.form-input {
+    padding: 5px 10px;
+    background-color: black;
+    border: 1px solid lime;
+    color: lime;
+    font-family: monospace;
+}
+
+.form-button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: black;
+    border: 2px solid lime;
+    color: lime;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+    .form-button:hover {
+        background-color: lime;
+        color: black;
+    }
+
+.title {
+    color: lime;
+    text-align: center;
+    font-family: monospace;
+    font-size: 24px;
+    margin-top: 30px;
+}
+
+.message {
+    text-align: center;
+    font-family: monospace;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.success {
+    color: lime;
+}
+
+.error {
+    color: red;
+}
+
+.validation {
+    color: orange;
+    font-size: 14px;
+}
+
+a,
+.nav-link,
+.navbar-brand {
+    color: lime !important;
+    font-family: monospace;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+a:hover,
+.nav-link:hover,
+.navbar-brand:hover {
+    background-color: lime !important;
+    color: black !important;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.nav-link.active {
+    background-color: lime !important;
+    color: black !important;
+    text-decoration: underline !important;
+}
+

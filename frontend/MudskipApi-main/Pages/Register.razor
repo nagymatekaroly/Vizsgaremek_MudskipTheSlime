@@ -1,0 +1,99 @@
+﻿@page "/register"
+@inject NavigationManager Navigation
+@using System.Net.Http.Json
+@using System.ComponentModel.DataAnnotations
+
+<h3 class="title">Regisztráció</h3>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p class="@($"message {(isSuccess ? "success" : "error")}")">@message</p>
+}
+
+<EditForm Model="userModel" OnValidSubmit="HandleRegister">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-container">
+
+        <label class="form-label">Felhasználónév:</label>
+        <InputText @bind-Value="userModel.Username" class="form-input" />
+
+        <label class="form-label">Teljes név:</label>
+        <InputText @bind-Value="userModel.Fullname" class="form-input" />
+
+        <label class="form-label">Email cím:</label>
+        <InputText @bind-Value="userModel.EmailAddress" class="form-input" />
+        <ValidationMessage For="@(() => userModel.EmailAddress)" class="validation" />
+
+        <label class="form-label">Jelszó:</label>
+        <InputText @bind-Value="userModel.PasswordHash" type="password" class="form-input" />
+
+        <label class="form-label">Jelszó újra:</label>
+        <InputText @bind-Value="confirmPassword" type="password" class="form-input" />
+
+        <button type="submit" class="form-button">Regisztráció</button>
+    </div>
+</EditForm>
+
+@code {
+    private RegisterModel userModel = new();
+    private string confirmPassword = string.Empty;
+    private string message = string.Empty;
+    private bool isSuccess;
+
+    private async Task HandleRegister()
+    {
+        if (userModel.PasswordHash != confirmPassword)
+        {
+            message = "A jelszavak nem egyeznek.";
+            isSuccess = false;
+            return;
+        }
+
+        try
+        {
+            var http = new HttpClient(new HttpClientHandler())
+                {
+                    BaseAddress = new Uri("https://mudskipdb.onrender.com")
+                };
+            var response = await http.PostAsJsonAsync("/api/User/register", userModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                message = "Sikeres regisztráció! Átirányítás...";
+                isSuccess = true;
+
+                await Task.Delay(2000);
+                Navigation.NavigateTo("/login");
+            }
+            else
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                message = $"Hiba: {body}";
+                isSuccess = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            message = $"Hiba: {ex.Message}";
+            isSuccess = false;
+        }
+    }
+
+    public class RegisterModel
+    {
+        [Required(ErrorMessage = "A felhasználónév kötelező.")]
+        public string Username { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "A teljes név kötelező.")]
+        public string Fullname { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Az email kötelező.")]
+        [EmailAddress(ErrorMessage = "Érvénytelen email cím.")]
+        public string EmailAddress { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "A jelszó kötelező.")]
+        public string PasswordHash { get; set; } = string.Empty;
+    }
+}

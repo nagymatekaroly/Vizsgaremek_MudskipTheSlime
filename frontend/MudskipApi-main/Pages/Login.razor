@@ -1,0 +1,48 @@
+@page "/login"
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+<h3 class="title">Bejelentkezés</h3>
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <p class="error-message">@error</p>
+}
+
+<div class="form-container">
+    <label class="form-label">Felhasználónév:</label>
+    <input class="form-input" @bind="username" placeholder="" />
+
+    <label class="form-label">Jelszó:</label>
+    <input class="form-input" @bind="password" type="password" placeholder="" />
+
+    <button class="form-button" @onclick="HandleLogin">Bejelentkezés</button>
+</div>
+
+@code {
+    private string username = "";
+    private string password = "";
+    private string? error;
+
+    private async Task HandleLogin()
+    {
+        error = null;
+
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        {
+            error = "Kérlek add meg a felhasználónevet és a jelszót!";
+            return;
+        }
+
+        var result = await JS.InvokeAsync<string>("loginUser", username, password);
+
+        if (result == "ok")
+        {
+            Nav.NavigateTo("/highscore", true);
+        }
+        else
+        {
+            error = result;
+        }
+    }
+}

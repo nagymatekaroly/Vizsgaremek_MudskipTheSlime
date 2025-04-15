@@ -1,0 +1,93 @@
+@page "/highscore"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+<h3 class="title">Ranglista</h3>
+
+<div class="form-container">
+    <button class="form-button" @onclick="@(() => Nav.NavigateTo("/myscores"))">Saját pontjaid</button>
+
+    @foreach (var level in levelNameToId.Keys)
+    {
+        <button class="form-button" @onclick="() => LoadLevelHighscores(levelNameToId[level])">@level</button>
+    }
+</div>
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <p class="error-message">@error</p>
+}
+
+@if (ranking != null && ranking.Any())
+{
+    <div class="score-container" style="margin-top: 30px;">
+        <h4 style="text-align: center; color: lime;">@GetLevelName(currentRankingLevelId)</h4>
+
+        @for (int i = 0; i < ranking.Count; i++)
+        {
+            <div class="score-row">
+                <span class="score-left">@($"{i + 1}. {ranking[i].Username}")</span>
+                <span class="score-right">@($"{ranking[i].HighscoreValue} pont")</span>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private string? error;
+    private List<RankingScore>? ranking;
+    private int currentRankingLevelId;
+
+    //PÁLYÁK ID-JE
+
+    private readonly Dictionary<string, int> levelNameToId = new()
+    {
+        { "Pálya 1", 1 },
+        { "Pálya 2", 2 },
+        { "Pálya 3", 3 },
+        { "Pálya 4", 4 },
+        { "Pálya 5", 5 },
+        { "Gyakorló pálya", 6 }
+    };
+
+    private async Task LoadLevelHighscores(int levelId)
+    {
+        error = null;
+        ranking = null;
+        currentRankingLevelId = levelId;
+
+        try
+        {
+            var response = await JS.InvokeAsync<string>("fetchLevelHighscores", levelId);
+            if (!string.IsNullOrEmpty(response))
+            {
+                var data = JsonSerializer.Deserialize<List<RankingScore>>(response);
+                ranking = data?
+                    .OrderByDescending(r => r.HighscoreValue)
+                    .ToList();
+            }
+            else
+            {
+                error = "Nem érkezett adat a szervertől.";
+            }
+        }
+        catch (Exception ex)
+        {
+            error = "Hiba történt: " + ex.Message;
+        }
+    }
+
+    private string GetLevelName(int levelId) => levelNameToId
+        .FirstOrDefault(x => x.Value == levelId).Key ?? $"Pálya {levelId}";
+
+    public class RankingScore
+    {
+        [JsonPropertyName("username")]
+        public string Username { get; set; } = "";
+
+        [JsonPropertyName("highscoreValue")]
+        public int HighscoreValue { get; set; }
+    }
+}

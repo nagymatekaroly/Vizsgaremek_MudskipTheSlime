@@ -1,0 +1,32 @@
+﻿@page "/user"
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+<h3>Felhasználói oldal</h3>
+
+@if (username == null)
+{
+    <p>Betöltés...</p>
+}
+else if (username == "")
+{
+    <p style="color:red">Nem vagy bejelentkezve.</p>
+}
+else
+{
+    <p style="color:lime">Bejelentkezve: <strong>@username</strong></p>
+}
+
+@code {
+    private string? username = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        username = await JS.InvokeAsync<string>("getCurrentUser");
+
+        if (string.IsNullOrEmpty(username))
+        {
+            Nav.NavigateTo("/login", true);
+        }
+    }
+}

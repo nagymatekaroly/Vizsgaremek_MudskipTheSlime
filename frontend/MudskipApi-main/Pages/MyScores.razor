@@ -1,0 +1,83 @@
+﻿@page "/myscores"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+<h3 class="title">Saját pontjaid</h3>
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <p class="error-message">@error</p>
+}
+
+@if (scores != null)
+{
+    <div class="score-container">
+        @foreach (var level in allLevels)
+        {
+            var score = scores.FirstOrDefault(s => s.LevelName == level);
+            int value = score?.Highscore ?? 0;
+
+            <div class="score-row">
+                <span class="score-left">@level</span>
+                <span class="score-right">@($"{value} pont")</span>
+            </div>
+        }
+    </div>
+}
+
+<div style="text-align: center; margin-top: 30px;">
+    <button class="form-button" @onclick="@(() => Nav.NavigateTo("/highscore"))">Vissza</button>
+</div>
+
+@code {
+    private List<MyScoreItem> scores = new();
+    private string? error;
+
+    private readonly List<string> allLevels = new()
+    {
+        "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Tutorial"
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var userId = await JS.InvokeAsync<string>("localStorage.getItem", "userId");
+            if (string.IsNullOrEmpty(userId))
+            {
+                error = "Nem vagy bejelentkezve.";
+                return;
+            }
+
+            var http = new HttpClient();
+            var url = $"https://mudskipdb.onrender.com/api/Highscore/my-highscores?userId={userId}";
+            var response = await http.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<List<MyScoreItem>>(json);
+                scores = result ?? new List<MyScoreItem>();
+            }
+            else
+            {
+                error = $"Hiba a kiszolgálótól: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            error = "Hiba történt: " + ex.Message;
+        }
+    }
+
+    public class MyScoreItem
+    {
+        [JsonPropertyName("levelName")]
+        public string LevelName { get; set; } = "";
+
+        [JsonPropertyName("highscore")]
+        public int Highscore { get; set; }
+    }
+}

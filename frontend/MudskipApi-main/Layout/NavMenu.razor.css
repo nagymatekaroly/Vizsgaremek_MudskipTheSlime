@@ -1,0 +1,34 @@
+﻿/* Teljes lime navbar */
+
+.matrix-navbar {
+    background-color: black !important;
+    border-bottom: 2px solid lime;
+}
+
+/* Lime zöld linkek (felülír mindent) */
+.matrix-link {
+    color: lime !important;
+    font-family: monospace;
+    font-weight: bold;
+    text-decoration: none !important;
+    transition: 0.2s;
+}
+
+    /* Hover */
+    .matrix-link:hover {
+        background-color: lime !important;
+        color: black !important;
+        border-radius: 5px;
+        padding: 4px 8px;
+    }
+
+/* Aktív oldal */
+.nav-link.active,
+.nav-link.active:focus,
+.nav-link.active:hover {
+    color: black !important;
+    background-color: lime !important;
+    text-decoration: underline !important;
+    border-radius: 5px;
+    padding: 4px 8px;
+}

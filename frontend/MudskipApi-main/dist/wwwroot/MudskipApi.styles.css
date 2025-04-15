@@ -1,0 +1,124 @@
+/* /Layout/MainLayout.razor.rz.scp.css */
+.page[b-s10w4qdzf7] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-s10w4qdzf7] {
+    flex: 1;
+}
+
+.sidebar[b-s10w4qdzf7] {
+    background-color: black !important;
+    border-right: 1px solid #00ff00;
+}
+
+.top-row[b-s10w4qdzf7] {
+    background-color: black !important;
+    border-bottom: 1px solid #00ff00;
+    justify-content: flex-start;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+    .top-row[b-s10w4qdzf7]  a, .top-row[b-s10w4qdzf7]  .btn-link {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+        text-decoration: none;
+        color: #00ff00;
+    }
+
+        .top-row[b-s10w4qdzf7]  a:hover, .top-row[b-s10w4qdzf7]  .btn-link:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 4px #00ff00;
+        }
+
+        .top-row[b-s10w4qdzf7]  a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Elrejtj�k az About linket */
+        .top-row[b-s10w4qdzf7]  a[href="about"] {
+            display: none !important;
+        }
+
+@media (max-width: 640.98px) {
+    .top-row[b-s10w4qdzf7] {
+        justify-content: space-between;
+    }
+
+        .top-row[b-s10w4qdzf7]  a, .top-row[b-s10w4qdzf7]  .btn-link {
+            margin-left: 0;
+        }
+}
+
+@media (min-width: 641px) {
+    .page[b-s10w4qdzf7] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-s10w4qdzf7] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-s10w4qdzf7] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+        .top-row.auth[b-s10w4qdzf7]  a:first-child {
+            flex: 1;
+            text-align: right;
+            width: 0;
+            s
+        }
+
+    .top-row[b-s10w4qdzf7], article[b-s10w4qdzf7] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+/* /Layout/NavMenu.razor.rz.scp.css */
+/* Teljes lime navbar */
+
+.matrix-navbar[b-m3cue346d7] {
+    background-color: black !important;
+    border-bottom: 2px solid lime;
+}
+
+/* Lime zöld linkek (felülír mindent) */
+.matrix-link[b-m3cue346d7] {
+    color: lime !important;
+    font-family: monospace;
+    font-weight: bold;
+    text-decoration: none !important;
+    transition: 0.2s;
+}
+
+    /* Hover */
+    .matrix-link:hover[b-m3cue346d7] {
+        background-color: lime !important;
+        color: black !important;
+        border-radius: 5px;
+        padding: 4px 8px;
+    }
+
+/* Aktív oldal */
+.nav-link.active[b-m3cue346d7],
+.nav-link.active:focus[b-m3cue346d7],
+.nav-link.active:hover[b-m3cue346d7] {
+    color: black !important;
+    background-color: lime !important;
+    text-decoration: underline !important;
+    border-radius: 5px;
+    padding: 4px 8px;
+}
