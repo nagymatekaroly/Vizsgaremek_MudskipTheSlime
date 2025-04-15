@@ -1,0 +1,70 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MudskipApp.HighscoreListPage"
+             Title="Highscore"
+             BackgroundColor="{StaticResource MatrixBackgroundColor}">
+
+    <VerticalStackLayout Padding="20" Spacing="16">
+
+        <Label x:Name="TitleLabel"
+               Text="Pontszámok"
+               FontSize="26"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource MatrixTextColor}" />
+
+        <CollectionView x:Name="HighscoreList"
+                        ItemsLayout="VerticalList"
+                        SelectionMode="None"
+                        HeightRequest="500">
+            <!-- opcionális korlátozás -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#111"
+                           BorderColor="{StaticResource MatrixTextColor}"
+                           CornerRadius="12"
+                           Padding="12"
+                           Margin="0,4"
+                           HasShadow="True"
+                           HorizontalOptions="FillAndExpand">
+
+                        <Grid ColumnDefinitions="Auto,*,Auto"
+                              HorizontalOptions="FillAndExpand">
+
+                            <!-- Rang -->
+                            <Label Grid.Column="0"
+                                   Text="{Binding Rank}"
+                                   TextColor="{StaticResource MatrixTextColor}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start" />
+
+                            <!-- Felhasználónév -->
+                            <Label Grid.Column="1"
+                                   Text="{Binding Username}"
+                                   TextColor="{StaticResource MatrixTextColor}"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Start"
+                                   HorizontalOptions="Start" />
+
+                            <!-- Pontszám -->
+                            <Label Grid.Column="2"
+                                   Text="{Binding ScoreText}"
+                                   TextColor="{StaticResource MatrixTextColor}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="End"
+                                   HorizontalOptions="End" />
+                        </Grid>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

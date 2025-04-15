@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MudskipApp.RegisterPage"
+             Title="Regisztráció"
+             BackgroundColor="{StaticResource MatrixBackgroundColor}">
+
+    <VerticalStackLayout Padding="30" Spacing="15">
+
+        <Label Text="Teljes név"
+               FontAttributes="Bold"
+               TextColor="{StaticResource MatrixTextColor}" />
+
+        <Entry x:Name="FullNameEntry"
+               Placeholder="Add meg a teljes neved"
+               TextColor="{StaticResource MatrixTextColor}"
+               PlaceholderColor="#00FF00"
+               BackgroundColor="#111111" />
+
+        <Label Text="Felhasználónév"
+               FontAttributes="Bold"
+               TextColor="{StaticResource MatrixTextColor}" />
+
+        <Entry x:Name="UsernameEntry"
+               Placeholder="Válassz felhasználónevet"
+               TextColor="{StaticResource MatrixTextColor}"
+               PlaceholderColor="#00FF00"
+               BackgroundColor="#111111" />
+
+        <Label Text="Email"
+               FontAttributes="Bold"
+               TextColor="{StaticResource MatrixTextColor}" />
+
+        <Entry x:Name="EmailEntry"
+               Placeholder="Add meg az emailed"
+               Keyboard="Email"
+               TextColor="{StaticResource MatrixTextColor}"
+               PlaceholderColor="#00FF00"
+               BackgroundColor="#111111" />
+
+        <Label Text="Jelszó"
+               FontAttributes="Bold"
+               TextColor="{StaticResource MatrixTextColor}" />
+
+        <Entry x:Name="PasswordEntry"
+               Placeholder="Írd be a jelszavad"
+               IsPassword="True"
+               TextColor="{StaticResource MatrixTextColor}"
+               PlaceholderColor="#00FF00"
+               BackgroundColor="#111111" />
+
+        <Label Text="Jelszó megerősítése"
+               FontAttributes="Bold"
+               TextColor="{StaticResource MatrixTextColor}" />
+
+        <Entry x:Name="ConfirmPasswordEntry"
+               Placeholder="Írd be újra a jelszavad"
+               IsPassword="True"
+               TextColor="{StaticResource MatrixTextColor}"
+               PlaceholderColor="#00FF00"
+               BackgroundColor="#111111" />
+
+        <Button Text="Regisztráció"
+                Clicked="OnRegisterClicked" />
+
+        <Button Text="Már van fiókod? Bejelentkezés"
+                Clicked="OnGoToLoginClicked"
+                FontSize="12"
+                FontAttributes="Italic" />
+
+    </VerticalStackLayout>
+</ContentPage>

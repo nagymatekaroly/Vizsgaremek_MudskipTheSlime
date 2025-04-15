@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MudskipApp.HighscorePage"
+             Title="Highscores"
+             BackgroundColor="{StaticResource MatrixBackgroundColor}">
+
+    <VerticalStackLayout Padding="30" Spacing="15" VerticalOptions="FillAndExpand">
+
+        <Label Text="Highscore Menü"
+               FontSize="24"
+               HorizontalOptions="Center"
+               TextColor="{StaticResource MatrixTextColor}" />
+
+        <Button Text="🧍 My Highscore"
+                Clicked="OnMyHighscoreClicked" />
+
+        <Button Text="📘 Tutorial"
+                Clicked="OnTutorialClicked" />
+
+        <Button Text="1. Pálya" Clicked="OnLevel1Clicked" />
+        <Button Text="2. Pálya" Clicked="OnLevel2Clicked" />
+        <Button Text="3. Pálya" Clicked="OnLevel3Clicked" />
+        <Button Text="4. Pálya" Clicked="OnLevel4Clicked" />
+        <Button Text="5. Pálya" Clicked="OnLevel5Clicked" />
+
+      
+
+    </VerticalStackLayout>
+</ContentPage>

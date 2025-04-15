@@ -1,0 +1,88 @@
+﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MudskipApp.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- 🎨 Színek -->
+            <Color x:Key="MatrixBackgroundColor">#000000</Color>
+            <Color x:Key="MatrixTextColor">#00FF00</Color>
+            <Color x:Key="MatrixFrameColor">#111111</Color>
+
+            <!-- 🔤 Alap szövegek -->
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="FontFamily" Value="monospace" />
+            </Style>
+
+            <!-- 📱 Oldalak háttérrel -->
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource MatrixBackgroundColor}" />
+            </Style>
+
+            <!-- 🔲 Frame (keretes UI-elemek) -->
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource MatrixFrameColor}" />
+                <Setter Property="BorderColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+
+            <!-- 🔘 Gomb -->
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource MatrixFrameColor}" />
+                <Setter Property="BorderColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="FontFamily" Value="monospace" />
+            </Style>
+
+            <!-- 🧭 NavigationPage (felső sáv) -->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource MatrixBackgroundColor}" />
+                <Setter Property="BarTextColor" Value="{StaticResource MatrixTextColor}" />
+            </Style>
+
+            <!-- 🧭 Shell (globális navigációs sáv) -->
+            <Style TargetType="Shell">
+                <Setter Property="BackgroundColor" Value="{StaticResource MatrixBackgroundColor}" />
+                <Setter Property="ForegroundColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="TitleColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="DisabledColor" Value="Gray" />
+                <Setter Property="UnselectedColor" Value="#006600" />
+                <Setter Property="TabBarBackgroundColor" Value="{StaticResource MatrixBackgroundColor}" />
+                <Setter Property="TabBarForegroundColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="TabBarTitleColor" Value="{StaticResource MatrixTextColor}" />
+            </Style>
+
+            <!-- 🧾 Entry -->
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="BackgroundColor" Value="#111111" />
+                <Setter Property="PlaceholderColor" Value="#009900" />
+                <Setter Property="FontFamily" Value="monospace" />
+            </Style>
+
+            <!-- 📝 Editor -->
+            <Style TargetType="Editor">
+                <Setter Property="TextColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="BackgroundColor" Value="#111111" />
+                <Setter Property="FontFamily" Value="monospace" />
+            </Style>
+
+            <!-- 📋 Picker -->
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="{StaticResource MatrixTextColor}" />
+                <Setter Property="BackgroundColor" Value="#111111" />
+                <Setter Property="FontFamily" Value="monospace" />
+            </Style>
+
+            <!-- 📑 CollectionView -->
+            <Style TargetType="CollectionView">
+                <Setter Property="BackgroundColor" Value="{StaticResource MatrixBackgroundColor}" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
